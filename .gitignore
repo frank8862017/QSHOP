@@ -1,0 +1,9 @@
+*/__pycache__/
+*.py[cod]
+*$py.class
+*/lib/
+*/bin/*
+*/include/
+nohup.out
+.idea/
+*/migrations/
