@@ -1,0 +1,78 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="goods_type">
+        <div class="goods_details"><a href="{% url 'home:index' %}">首页</a> >  {{ shop.goods_name }}</div>
+        <div class="goods_box">
+            <div class="box_pic"><img src="{% static shop.goods_pic %}"/></div>
+            <div class="box_details">
+                <form method="post" action="#">
+                    {% csrf_token %}
+                    <h1>{{ shop.goods_name }}</h1>
+                    <span>{{ shop.goods_infro }}</span>
+                    <div class="box_bg">价格：￥<span style="font-size: 40px; font-weight: bold; font-family:'微软雅黑';color:#FD482C ">{{ shop.goods_xprice }}</span>元&nbsp;&nbsp;<s>{{ shop.goods_oprice }}</s></div>
+                    <div class="address">配送：{{ shop.goods_address }}</div>
+                    <div class="address">存储方法：{{ shop.goods_method }}</div>
+                    <div class="address">商品编号：{{ shop.goods_num }}</div>
+                    <div class="num">数量：
+                        <input type="button" name="-" value="-" class="btn1" onclick="dec()" />
+                        <input type="text" value="1" id="count" name="count" class="text1"/>
+                        <input type="button" name="+" value="+" class="btn1" onclick="add()"/> </div>
+                    <input type="hidden" name="gname" value="{{ shop.goods_name }}"/>
+                    <input type="hidden" name="gprice" value="{{ shop.goods_xprice }}"/>
+                    <input type="hidden" name="gpic" value="{{ shop.goods_pic }}"/>
+                    <input type="hidden" name="manager_id" value="{{ shop.manager_id }}"/>
+                    <input type="hidden" name="goods_id" value="{{ shop.goods_id }}"/>
+                    <div class="btn2"><input type="submit" value="加入购物车" class="gouwu"/> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var count ;
+        function add()
+        {
+            count = document.getElementById('count').value;
+            count++
+            document.getElementById('count').value = count;
+        }
+        function dec()
+        {
+            count = document.getElementById('count').value;
+            count--;
+            if(document.getElementById('count').value == 1)
+            {
+                document.getElementById('count').value = 1
+            }
+            else
+            {
+                document.getElementById('count').value = count;
+            }
+        }
+    </script>
+    <div class="goods_type1">
+        <div class="type1_left">
+            <div class="type1_top">其他商品</div>
+            <div class="type1_bottom">
+                {% for list in list %}
+                <dl>
+                    <dt><a href="{% url 'goods:goods_details' list.goods_id %}"><img src="{% static list.goods_pic %}"/> </a></dt>
+                    <dd>
+                        <span class="pname">
+                        {%if list.goods_name|length >= 15 %}
+                            <a href="{% url 'goods:goods_details' list.goods_id %}">{{list.goods_name|slice:"15"}}</a>...
+                        {%else%} {{list.goods_name}}
+                        {%endif%}
+                        </span>
+                        <p class="price">￥{{ list.goods_xprice }}</p>
+                    </dd>
+                </dl>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="type1_right">
+            <div class="type1_top">商品详情</div>
+            <div class="type1_bottom">{{ shop.goods_content }}</div>
+        </div>
+    </div>
+{% endblock %}

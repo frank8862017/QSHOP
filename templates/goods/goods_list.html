@@ -1,0 +1,55 @@
+{% extends 'common/base_manager.html' %}
+{% load static %}
+{% block content %}
+      <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">商品管理</a>
+        <a href="">商品列表</a>
+      </span>
+    </div>
+    <div class="x-body">
+      <table class="layui-table">
+        <thead>
+          <tr>
+		    <th>商品id</th>
+            <th>商品编号</th>
+            <th>商品名称</th>
+            <th>所属类型</th>
+            <th>商品原价</th>
+            <th>商品现价</th>
+            <th>商品库存</th>
+			<th>商品存储方法</th>
+            <th>图片</th>
+            <th>操作</th>
+			</tr>
+        </thead>
+        <tbody>
+         {% for goods_list in list %}
+          <tr>
+            <td>{{ goods_list.id }}</td>
+			 <td>{{ goods_list.goods_num }}</td>
+            <td>{{ goods_list.goods_name }}</td>
+            <td>{{ goods_list.type01.type_name }}</td>
+            <td>￥{{ goods_list.goods_oprice }}元</td>
+            <td>￥{{ goods_list.goods_xprice }}元</td>
+            <td>{{ goods_list.goods_count }}</td>
+			<td>{{ goods_list.goods_method }}</td>
+            <td><img src="{% static goods_list.goods_pic %}" alt="1">  </td>
+            <td >
+				<a href="{% url 'goods:goods_modify' goods_list.id %}">编辑</a>
+                <a href="{% url 'goods:goods_delete' goods_list.id %}">删除</a>
+                <a title="编辑" onclick="x_admin_show('编辑','{% url 'manager:edit_count' goods_list.id %}',600,400)"
+                           href="javascript:;">添加库存</a>
+            </td>
+          </tr>
+          {% empty %}
+           <tr>
+            <td colspan="8" align="center">暂无商品，快去上架!</td>
+           </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+
+{% endblock %}

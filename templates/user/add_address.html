@@ -1,0 +1,66 @@
+{% extends 'common/user_base.html' %}
+{% block bobx %}
+    <div class="xinzeng">新增收货人信息</div>
+    <form method="post" class="biaodan" action="{% url 'user:do_add_address' %}">
+    {% csrf_token %}
+        <div class="inp clearfix">
+            <label class="fl"><span>*</span>收货人：</label>
+            <input type="text" class="fl" id="uname" name="name"/>
+        </div>
+        <div class="inp clearfix">
+            <label class="fl"><span>*</span>详细地址</label>
+            <input type="text" class="kuan fl" id="dizhi" name="address"/>
+        </div>
+        <div class="inp clearfix">
+            <label class="fl"><span>*</span>手机号码</label>
+            <input type="text" class="fl" id="tel" name="phone"/>
+        </div>
+        <input type="submit" id="btn" value="保存收货人信息" class="btn"/>
+    </form>
+
+{#    <script type="text/javascript">#}
+{#        $("#btn").click(function(){#}
+{#           var uname = $("#uname").val();#}
+{#           if(uname==""){#}
+{#               alert("请输入收件人");#}
+{#               return false;#}
+{#           }#}
+{#           var dizhi = $("#dizhi").val();#}
+{#           if(dizhi==""){#}
+{#               alert("请输入详细地址");#}
+{#               return false;#}
+{#           }#}
+{#           var tel = $("#tel").val();#}
+{#           var cd = tel.length;#}
+{#           if(tel==""){#}
+{#               alert("请输入手机号码");#}
+{#               return false;#}
+{#           }#}
+{#           else{#}
+{#               if(cd!=11){#}
+{#                  alert('手机号码必须为11位');#}
+{#                  return false;#}
+{#               }#}
+{#           }#}
+{#           var token = $("input[name='csrfmiddlewaretoken']").val();#}
+{#          $.ajax({#}
+{#                type:"POST",#}
+{#                url:"{% url 'users:add_addressdo' %}",#}
+{#                data:JSON.stringify({#}
+{#                    'uname':uname,#}
+{#                    'address':dizhi,#}
+{#                    'tel':tel,#}
+{#                    'csrfmiddlewaretoken':token#}
+{#                }),#}
+{#                headers:{"X-CSRFToken":token},#}
+{#                contentType:"application/json",#}
+{#                success:function (msg) {#}
+{#                    if(msg==1){#}
+{#                        alert('添加地址成功');#}
+{#                        window.location.href = "{% url 'users:user_address' %}";#}
+{#                    }#}
+{#                }#}
+{#            })#}
+{#        })#}
+{#    </script>#}
+{% endblock %}

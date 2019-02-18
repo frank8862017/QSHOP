@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="users_box">
+    <div class="users_box_top">会员注册</div>
+    <div class="users_box_bottom">
+        <div class="box_bottom_left"><img src="{% static 'images/huiyuan.jpg' %}"/></div>
+        <div class="box_bottom_right">
+            <form method="post" action="{% url 'user:doreg' %}">
+                {% csrf_token %}
+                <div>
+                    昵&nbsp;&nbsp;称：<input type="text" name="username" id="username" placeholder="请输入昵称" class="input" onblur="check_user()"/>
+                    <span style="font-size: 12px"></span>
+                </div>
+                <div>
+                    邮&nbsp;&nbsp;箱：<input type="email" name="email" id="email" placeholder="请输入邮箱" class="input" onblur="check_user()"/>
+                    <span style="font-size: 12px"></span>
+                </div>
+                <div>
+                    密&nbsp;&nbsp;码：<input type="password" name="userpass" placeholder="请输入密码" class="input"/>
+                </div>
+                <div>
+                    确认密码：<input type="password" name="userpass" placeholder="请确认密码" class="input"/>
+                </div>
+                <div>
+                    <a href="{% url 'user:login' %}"><input type="button" value="登录" class="zhuce"/></a>
+                    <input type="submit" id='sub' value="注册会员" class="gouwu" disabled/>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+    <script>
+
+    //验证用户是否存在
+    function check_user(){
+        var name=$('#username').val();  //获取用户名
+        $.ajax({
+            url:'{% url 'user:check_user' %}',//访问的连接（地址）
+            data:{username:name},  //json {key：name}
+            type:'get',         //数据提交的方式
+            dataType:'text',   //text HTML json
+            success:function (data,status,xhr) {   //成功之后执行的函数
+                if (data==1){
+                    $('span').eq(0).html('用户名已存在。')
+                }else {
+                    $('span').eq(0).html('用户名尚未注册。');
+                    $('#sub').attr('disabled',false)
+                }
+
+            }
+        })
+    }
+
+    </script>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block content %}
+<div class="users_box">
+    <div class="users_box_top">会员登录</div>
+    <div class="users_box_bottom">
+        <div class="box_bottom_left"><img src="{% static 'images/huiyuan.jpg' %}"/></div>
+        <div class="box_bottom_right">
+
+            <form method="post" action="{% url 'user:dologin' %}" id="zc_form" >
+                {% csrf_token %}
+                <div>
+                    昵&nbsp;称：<input type="text" name="username" placeholder="请输入昵称" id="username" class="input" />
+                </div>
+                <div>
+                    密&nbsp;码：<input type="password" name="userpass" placeholder="请输入密码" class="input" id="password"/>
+                </div>
+                <div>
+                    验证码：<input type="text" name="verify_code" placeholder="请输入验证码" class="input" id="verify_code_input"  style="width: 100px" />
+                    <span style="width: 100px;">
+                    <img src="{% url 'user:verify_code' %}" alt="验证码" id="verify_code" >
+                    <span onclick="reload_code()" style="font-size: 10px;text-decoration: underline">看不清，换一张</span>
+                </span>
+                </div>
+                <div>
+                    <input type="button" value="登录" class="gouwu" id="result" onclick="check_code()"/>
+                    <a href="{% url 'user:reg' %}"><input type="button" value="注册会员" class="zhuce"/></a>
+                </div>
+                <input type="hidden" id="status" value="0">
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+    <script>
+
+    //更换验证码
+    function reload_code() {
+        var temp=new Date().getTime();
+        $('#verify_code').attr('src',"{% url 'user:verify_code' %}?t="+temp)
+    }
+
+    //ajax提交操作
+    function check_code() {
+        var verify_code=$('#verify_code_input').val();
+        var token=$('input[name=csrfmiddlewaretoken]').val();
+        if (verify_code.length !=5){
+            alert('验证码长度必须为5位！');
+            return false
+        }
+        var username=$('#username').val();
+        var passwd=$('#password').val();
+        var verify_code=$('#verify_code_input').val();
+        if (username ==''){
+            alert('用户名不可为空！');
+            return false
+        }
+        if (password==''){
+            alert('密码不可为空！');
+            return false
+        }
+        $.ajax({
+            url:'{% url "user:checked_code" %}',
+            data:{verify_code:verify_code,csrfmiddlewaretoken:token},
+            dataType:'json',
+            type:'post',
+            anync:false,
+            success:function (data) {
+                console.log(data);
+                if (data.status==0){
+                    alert(data.msg);
+                }else {
+                     $('#zc_form').submit();
+                }
+             }
+            });
+    }
+
+    //登录判断
+{#    function check_submit() {#}
+{#        //用户名#}
+{#        var username=$('#username').val();#}
+{#        var passwd=$('#password').val();#}
+{#        var verify_code=$('#verify_code_input').val();#}
+{#        var status=$('#status').val();#}
+{#        if (username ==''){#}
+{#            alert('用户名不可为空！');#}
+{#            return false#}
+{#        }#}
+{#        if (password==''){#}
+{#            alert('密码不可为空！');#}
+{#            return false#}
+{#        }#}
+{#        if (status==1){#}
+{#            $('#zc_form').submit()#}
+{#        }else {#}
+{#            alert('验证码错误！')#}
+{#        }#}
+{#    }#}
+
+    </script>
+{% endblock %}
