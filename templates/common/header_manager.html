@@ -1,6 +1,6 @@
  <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="./index.html">全球生鲜卖家管理后台</a></div>
+        <div class="logo"><a href="{% url 'manager:main' %}">全球生鲜卖家管理后台</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -11,7 +11,7 @@
               <dd><a href="{% url 'manager:loginout' %}">退出</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item to-index"><a href="{% url 'index' %}">前台首页</a></li>
+          <li class="layui-nav-item to-index"><a href="/">前台首页</a></li>
         </ul>
 
     </div>

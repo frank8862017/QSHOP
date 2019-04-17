@@ -4,6 +4,7 @@
 {#        {% if user_id == 1 %}#}
 {#            <li><audio src="{% static 'music/train.mp3' %}"autoplay loop controls></audio></li>#}
 {#        {% endif %}#}
+        <li><a href="{% url 'manager:login' %}">[商家登录]</a></li>
         <li><a href="{% url 'goods:openstore' %}">[免费开店]</a></li>
         <li><a href="{% url 'user:car_list' %}">[购物车]</a></li>
         {% if request.session.U_userid %}
@@ -18,7 +19,7 @@
     <div class="logo"></div>
     <div class="nav">
         <ul>
-            <li><a href="{% url 'goods:index' %}">首页<br/>Home</a></li>
+            <li><a href="/">首页<br/>Home</a></li>
             <li><a href="{% url 'goods:fruit' %}">鲜果<br/>Fruit</a></li>
             <li><a href="{% url 'user:user_order_list' %}">会员中心<br/>VIP Club</a></li>
             <li><a href="{% url 'store:store_list' %}">店铺<br/>VIP Club</a></li>

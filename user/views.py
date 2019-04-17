@@ -80,7 +80,7 @@ def dologin(request):
     if info!=None:
             request.session['U_userid']=info.id
             request.session['U_username']=info.username
-            return  HttpResponseRedirect('/goods/index')
+            return  HttpResponseRedirect('/')
     else:
         return HttpResponse('用户名或密码有误！')   #出于安全考虑，不能只提示一种错误
 
@@ -345,13 +345,11 @@ def do_place_order(request):
         # 得到构造的请求，如果http_method是GET，则是一个带完成请求参数的url，如果http_method是POST，则是一段HTML表单片段
         response = client.page_execute(request, http_method="GET")
         # print("alipay.trade.page.pay response:" + response)
-
         # 清空购物车
         car.objects.filter(users_id=user_id).delete()
-        # return HttpResponse('aaaa')
         return HttpResponseRedirect(response)
-        # return HttpResponseRedirect(reverse('goods:index'))   #reverse进行方向解析
-    else:return HttpResponse('操作有误！')
+    else:
+        return HttpResponse('操作有误！')
 
 # 添加收货地址
 def add_address(request):

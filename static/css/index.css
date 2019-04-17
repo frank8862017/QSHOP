@@ -4,10 +4,10 @@ body{width: 100%;overflow-x: hidden;margin: 0;padding: 0}
 ul{ list-style: none}
 img{border: none}
 .header ul{ width: 1280px; height: 20px; margin: auto; text-align: right;}
-.header ul li{float: right; width: 150px; height: 35px; }
-a{ text-decoration: none}
-.header_logo{ width: 1400px; height: 110px; margin: auto; margin-top: 10px;}
-.logo{ width: 305px; height: 80px; background-image: url("../images/logo.png"); float: left; margin-right: 50px;}
+.header ul li{float: right; width: 80px; height: 35px; text-align: center}
+a{ text-decoration: none;}
+.header_logo{ width: 1400px; height: 103px; margin: auto; margin-top: 10px;}
+.logo{ width: 180px; height: 103px; background-image: url("../images/timg.jpg"); float: left; margin-right: 50px;}
 .nav{ width: 320px; height: 60px; float: left;  margin-top: 10px; line-height: 30px; color: #999999; font-family: "微软雅黑"; font-size: 14px;}
 .nav ul li{ float: left; width: 70px; margin-right: 10px;}
 .nav ul li a{ color: #999999}

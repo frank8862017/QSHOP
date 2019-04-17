@@ -21,7 +21,7 @@ from  .upload import upload_image
 from django.conf.urls.static import static
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
-    url('^home',include('home.urls',namespace='home')),
+    url('',include('home.urls',namespace='home')),
     url(r'^manager/',include('manager.urls',namespace='manager')),
     url(r'^goods/',include('goods.urls',namespace='goods')),
     url(r'^user/',include('user.urls',namespace='user')),

@@ -1,0 +1,67 @@
+UPDATE user SET authentication_string=PASSWORD("426425") WHERE user='root';
+update user set password_expired='N' where user='root';
+flush privileges;
+
+
+::1   代表本机
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'::1' IDENTIFIED BY '123456';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'127.0.0.1' IDENTIFIED BY '123456';
+GRANT REPLICATION SLAVE ON *.* TO 'repl'@'localhost' IDENTIFIED BY '123456';
+
+
+查看主机状态
+show master status;
+
+
+change master to MASTER_HOST='127.0.0.1',MASTER_PORT=3307,MASTER_USER='repl',MASTER_PASSWORD='123456',master_log_file='mysql-bin.000005',master_log_pos=3435;
+
+
+start slave;
+
+IP：
+101.200.56.194
+
+
+
+
+
+[uwsgi]
+# Django-related settings
+http = :9000
+#socket = 127.0.0.1:5000  #和nginx一致的端口，且安全组已经打开次端口
+# Django项目根目录 (绝对路径)
+chdir           =  /var/data/html/QSHOP
+wsgi-file = /var/data/html/QSHOP/QSHOP/wsgi.py #项目中wsgi.py所在的路径
+# wsgi.py文件在项目中的位置
+module          = QSHOP.wsgi:application
+# process-related settings
+# master
+master          = true
+# 运行的进程数
+processes       = 4
+#多站模式
+vhost = true
+#虚拟环境(最最最重要的)
+pythonpath = /root/.virtualenv/django/lib/python3.5/site-packages
+vacuum  = true
+
+server {
+        #这里是访问时用到的端口
+        listen       80;
+        server_name  101.200.56.194;  #公网的IP
+        charset UTF-8;
+        #这块存让日志文件
+        #access_log  /var/log/nginx/Buy_access.log;
+        #error_log   /var/log/nginx/Buy_error.log;
+        client_max_body_size 75M;
+        location / {
+                include uwsgi_params;   #引入uwgi_params在nginx.conf同一目录
+                #同uwsgi内容
+                uwsgi_pass 127.0.0.1:9000;  #重点  必须和uwsgi一致
+                #链接超时时间
+                uwsgi_read_timeout 30;
+        }
+      location /static{
+                alias /var/data/html/QSHOP/static; #静态文件绝对地址
+       }
+}

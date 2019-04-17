@@ -8,7 +8,7 @@ urlpatterns = [
     # 卖家登录过程
     url(r'dologin/',views.dologin,name='dologin'),
     # 显示后台商品管理页面
-    url(r'main/',views.main),
+    url(r'main/',views.main,name="main"),
 
     # 注销账户
     url(r'^loginout/',views.loginout,name='loginout'),
