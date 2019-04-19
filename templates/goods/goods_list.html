@@ -34,7 +34,7 @@
             <td>￥{{ goods_list.goods_xprice }}元</td>
             <td>{{ goods_list.goods_count }}</td>
 			<td>{{ goods_list.goods_method }}</td>
-            <td><img src="{% static goods_list.goods_pic %}" alt="1">  </td>
+            <td><img src="{% static goods_list.goods_pic.url %}" alt="1">  </td>
             <td >
 				<a href="{% url 'goods:goods_modify' goods_list.id %}">编辑</a>
                 <a href="{% url 'goods:goods_delete' goods_list.id %}">删除</a>

@@ -13,7 +13,7 @@
          <div class="box_list">
                 <dl>
                     <dt><a href="{% url 'goods:goods_details'%}?gid={{ goods_list.id }}&b=123"><img
-                            src="{% static goods_list.goods_pic %}"/></a></dt>
+                            src="{% static goods_list.goods_pic.url %}"/></a></dt>
                     <dd>
                         <p>
                         {%if goods_list.goods_name|length >= 15 %}

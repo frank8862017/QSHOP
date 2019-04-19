@@ -18,7 +18,7 @@
                     {% for car in car_list %}
                         <tr id="tr_{{ car.goods.id }}">
                             <td><a href="#">{{ car.goods.goods_name }}</a></td>
-                            <td><a href="#"><img src="{% static car.goods.goods_pic %}"/></a></td>
+                            <td><a href="#"><img src="{% static car.goods.goods_pic.url %}"/></a></td>
                             <td>￥{{ car.goods.goods_xprice }}元</td>
                              <input type="hidden" id="xprice_{{ car.goods_id }}" value="{{ car.goods.goods_xprice }}"/>
 

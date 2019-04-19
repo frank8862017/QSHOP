@@ -92,3 +92,4 @@ urlpatterns = [
     #地址页面
     url(r'^address/', views.address, name='address'),
 ]
+app_name="user"

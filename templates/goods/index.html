@@ -11,7 +11,7 @@
             {% for goods in list %}
             <div class="box_list">
                 <dl>
-                    <dt><a href="{% url 'goods:goods_details' %}?gid={{  goods.id }}"><img style="height: 200px" src="{% static goods.goods_pic %}"/></a></dt>
+                    <dt><a href="{% url 'goods:goods_details' %}?gid={{  goods.id }}"><img style="height: 200px" src="{% static goods.goods_pic.url %}"/></a></dt>
                     <dd>
                         <p><a href="#">
                         {%if goods.goods_name|length >= 15 %}

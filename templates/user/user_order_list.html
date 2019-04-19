@@ -60,7 +60,7 @@
                             <tr style="height: 50px">
                                 <td width="150">
                                     <a href="{% url 'goods:goods_details' %}?gid={{  order_info.goods.id }}" target="_blank">
-                                        <img width="50px" height="50px" src="{% static order_info.goods.goods_pic %}"/>
+                                        <img width="50px" height="50px" src="{% static order_info.goods.goods_pic.url %}"/>
                                     </a>
                                 </td>
                                 <td align="left" width="350" style="padding-left: 50px">

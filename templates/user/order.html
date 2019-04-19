@@ -27,7 +27,7 @@
                         {% csrf_token %}
                 <tr>
                         <td><a href="#">{{ cart.goods.goods_name }}</a></td>
-                            <td><a href="#"><img src="{% static cart.goods.goods_pic %}" /></a></td>
+                            <td><a href="#"><img src="{% static cart.goods.goods_pic.url %}" /></a></td>
                         <td>￥{{ cart.goods.goods_xprice }}元</td>
                         <td>{{ cart.number }}</td>
                         <td>￥{% widthratio cart.goods.goods_xprice 1 cart.number %}</td>

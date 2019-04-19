@@ -32,7 +32,7 @@
             {% for order_info in info.order_info_set.filter %}
                 <tr>
                     <td>{{ order_info.goods.goods_name }}</td>
-                    <td><img src="{% static order_info.goods.goods_pic %}"/></td>
+                    <td><img src="{% static order_info.goods.goods_pic.url %}"/></td>
                     <td>￥{{ order_info.goods.goods_xprice }}元</td>
                     <td>{{ order_info.number }}</td>
                     <td>￥{% widthratio order_info.goods.goods_xprice 1 order_info.number %}元</td>

@@ -10,3 +10,4 @@ urlpatterns = [
     #店铺详情
     url(r'^store_details/',views.store_details,name='store_details'),
 ]
+app_name="store"

@@ -15,7 +15,7 @@
             {% for goods in goods_list %}
             <dl>
                 <dt> <a href="{% url 'goods:goods_details' %}" target="_blank">
-                    <img src="{% static goods.goods_pic %}"/> </a></dt>
+                    <img src="{% static goods.goods_pic.url %}"/> </a></dt>
                 <dd>
                     <p style="font-size: 18px; font-family: '微软雅黑'; color: #2b542c"> {%if goods.goods_name|length >= 12 %}
                             <a href="{% url 'goods:goods_details' goods.goods_id %}" target="_blank">

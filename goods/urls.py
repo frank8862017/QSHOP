@@ -15,3 +15,4 @@ urlpatterns = [
     url(r'goods_details/',views.goods_details,name='goods_details'),
     url(r'^fruit', views.fruit, name='fruit'),
 ]
+app_name="goods"

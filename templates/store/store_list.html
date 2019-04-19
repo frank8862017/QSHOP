@@ -5,7 +5,7 @@
         {% for manager in manager_list %}
             <div class="box_list">
                 <dl>
-                    <dt><a href="{% url 'store:store_details' %}?id={{ manager.id }}"><img src="{% static manager.shop_logo %}"/></a></dt>
+                    <dt><a href="{% url 'store:store_details' %}?id={{ manager.id }}"><img src="{% static manager.shop_logo.url %}"/></a></dt>
                     <dd>
                         <p><a href="{% url 'store:store_details' %}?id={{ manager.id }}">{{ manager.shop_name }}</a></p>
                         <p>掌柜：{{ manager.username }} <a href="{% url 'store:store_details' %}?id={{ manager.id }}">进店>></a>

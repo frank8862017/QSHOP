@@ -49,3 +49,4 @@ urlpatterns = [
     # 删除用户
     url(r'^member_del/', views.member_del, name='member_del'),
 ]
+app_name="manager"

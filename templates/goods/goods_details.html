@@ -4,7 +4,7 @@
     <div class="goods_type">
         <div class="goods_details"><a href="/">首页</a> >  {{ shop.goods_name }}</div>
         <div class="goods_box">
-            <div class="box_pic"><img src="{% static shop.goods_pic %}"/></div>
+            <div class="box_pic"><img src="{% static shop.goods_pic.url %}"/></div>
             <div class="box_details">
                 <form method="post" action="{% url 'user:add_car' %}">
                     {% csrf_token %}
@@ -56,7 +56,7 @@
             <div class="type1_bottom">
                 {% for list in other_goods_list %}
                 <dl>
-                    <dt><a href="{% url 'goods:goods_details'%}?gid={{ list.id }}" target="_blank"><img src="{% static list.goods_pic %}"/> </a></dt>
+                    <dt><a href="{% url 'goods:goods_details'%}?gid={{ list.id }}" target="_blank"><img src="{% static list.goods_pic.url %}"/> </a></dt>
                     <dd>
                         <span class="pname">
                         {%if list.goods_name|length >= 15 %}

@@ -12,7 +12,7 @@
   {% for list1 in list1 %}
          <div class="box_list">
                 <dl>
-                    <dt><a href="{% url 'goods:goods_details' list1.goods_id %}"><img src="{% static list1.goods_pic %}"/></a></dt>
+                    <dt><a href="{% url 'goods:goods_details' list1.goods_id %}"><img src="{% static list1.goods_pic.url %}"/></a></dt>
                     <dd>
                         <p>{%if goods_list.goods_name|length >= 15 %}
                             {{goods_list.goods_name|slice:"15"}}...
