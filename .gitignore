@@ -8,4 +8,4 @@ nohup.out
 .idea/
 */migrations/
 *.pyc
-*/__pycache__/*
+*/__pycache__
