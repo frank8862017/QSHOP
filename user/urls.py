@@ -32,5 +32,6 @@ urlpatterns = [
     path('activate_email',views.activate_email,name='activate_email'),
     path('send_msg_view/',views.send_msg_view,name='send_msg_view') ,
     path('address/', views.address, name='address'),
+    path('return_url/', views.return_url, name='return_url'),
 ]
 app_name="user"
