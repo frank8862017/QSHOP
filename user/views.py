@@ -704,4 +704,4 @@ def return_url(request):
     # print(request.GET)
     order_code=request.GET.get('out_trade_no')
     bool=orders.objects.filter(order_code=order_code).update(pay_status=1,pay_time=datetime.datetime.now())
-    return message("支付成功！<a href='%s'>继续购物</a>" % (reverse('/')))
+    return message("支付成功！<a href='%s'>继续购物</a>" % ("/"))
