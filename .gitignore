@@ -9,3 +9,4 @@ nohup.out
 */migrations/
 *.pyc
 */__pycache__
+/logs
