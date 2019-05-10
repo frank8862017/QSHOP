@@ -1,0 +1,2 @@
+kill -9 `lsof -i:80 -t`
+python manage.py runserver 0.0.0.0:80
