@@ -341,7 +341,7 @@ def do_place_order(request):
         model.body = goods_name_all
         model.product_code = "FAST_INSTANT_TRADE_PAY"
         request = AlipayTradePagePayRequest(biz_model=model)
-        request.return_url = 'http://127.0.0.1:8000/user/return_url/'
+        request.return_url = 'http://39.105.195.67:80/user/return_url/'
         # 得到构造的请求，如果http_method是GET，则是一个带完成请求参数的url，如果http_method是POST，则是一段HTML表单片段
         response = client.page_execute(request, http_method="GET")
         # print("alipay.trade.page.pay response:" + response)
