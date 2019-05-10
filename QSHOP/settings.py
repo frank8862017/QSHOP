@@ -87,8 +87,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'qshop',
         'USER': 'root',
-        'PASSWORD': '426425',
-        'HOST': 'localhost',  # 也可以写ip地址
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
         'PORT': '3306'
     },
     # 'slave': {
@@ -126,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -156,16 +156,11 @@ MEDIA_ROOT=os.path.join(BASE_DIR,"static")
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# smtp服务的邮箱服务器 我用的是163
 EMAIL_HOST = 'smtp.163.com'
-#smtp服务固定的端口是25，上线时候端口改为994
-EMAIL_PORT = 25
-#发送邮件的邮箱
+EMAIL_PORT = 25  #994
 EMAIL_HOST_USER = '18737307883@163.com'
-#在邮箱中设置的客户端授权密码
 EMAIL_HOST_PASSWORD = 'lh1111'
-#收件人看到的发件人
-EMAIL_FROM = '王炸<18737307883@163.com>'
+EMAIL_FROM = '水果商城<18737307883@163.com>'
 
 #上线之后发送邮件需要加
 # EMAIL_USE_SSL=True

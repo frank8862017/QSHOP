@@ -1,18 +1,19 @@
-from django.conf.urls import url
+
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    url(r'^goods_add/',views.goods_add,name='goods_add'),
-    url(r'^dogoods_add/',views.dogoods_add,name='dogoods_add'),
-    url(r'^goods_list/', views.goods_list, name='goods_list'),
-    url(r'^goods_delete/(?P<pk>\d+)',views.goods_delete,name='goods_delete'),
-    url(r'^goods_modify/(?P<pk>\d+)',views.goods_modify,name='goods_modify'),
-    url(r'^dogoods_modify/',views.dogoods_modify,name='dogoods_modify'),
-    url(r'^openstore/',views.openstore,name='openstore'),
-    url(r'doopenstore/',views.doopenstore,name='doopenstore'),
-    url(r'welcome/',views.welcome,name='welcome'),
-    url(r'goods_type/',views.goods_type,name='goods_type'),
-    url(r'goods_details/',views.goods_details,name='goods_details'),
-    url(r'^fruit', views.fruit, name='fruit'),
+    path('goods_add/',views.goods_add,name='goods_add'),
+    path('dogoods_add/',views.dogoods_add,name='dogoods_add'),
+    path('goods_list/', views.goods_list, name='goods_list'),
+    path('goods_delete/<int:pk>',views.goods_delete,name='goods_delete'),
+    path('goods_modify/<int:pk>',views.goods_modify,name='goods_modify'),
+    path('dogoods_modify/',views.dogoods_modify,name='dogoods_modify'),
+    path('openstore/',views.openstore,name='openstore'),
+    path('doopenstore/',views.doopenstore,name='doopenstore'),
+    path('welcome/',views.welcome,name='welcome'),
+    path('goods_type/',views.goods_type,name='goods_type'),
+    path('goods_details/',views.goods_details,name='goods_details'),
+    path('fruit/', views.fruit, name='fruit'),
 ]
 app_name="goods"

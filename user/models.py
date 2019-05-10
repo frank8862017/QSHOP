@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 class users(models.Model):
     class Meta:
@@ -8,6 +9,8 @@ class users(models.Model):
     email=models.EmailField(default='',max_length=50,verbose_name="用户邮箱")
     is_activate=models.BooleanField(default=0,verbose_name="是否登陆状态")
     password=models.CharField(max_length=32,verbose_name="用户密码")
+    def __str__(self):
+        return self.username
 
 
 class car(models.Model):
@@ -34,10 +37,63 @@ class  orders(models.Model):
     pay_time=models.DateTimeField(null=True,verbose_name="付款时间")
     send_status=models.BooleanField(default=False,verbose_name="发货状态")
     send_time = models.DateTimeField(null=True,verbose_name="发货时间")
-    receive_status=models.BooleanField(default=False,verbose_name="收获状态")
+    receive_status=models.BooleanField(default=False,verbose_name="收货状态")
     receive_time=models.DateTimeField(null=True,verbose_name="收货时间")
     comment_status=models.BooleanField(default=False,verbose_name="评价状态")
     manage=models.ForeignKey('manager.ManagerMessage',default=1,verbose_name="商家",on_delete=models.DO_NOTHING)
+
+    def pay(self):
+        if self.pay_status == 0:
+            color_code = 'red'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '尚未付款',
+            )
+        else:
+            color_code = 'green'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '已付款',
+            )
+    pay.short_description = u'付款状态'
+
+    def colored_status(self):
+        if self.send_status == 0:
+            color_code = 'red'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '尚未发货',
+            )
+        else:
+            color_code = 'green'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '已发货',
+            )
+    colored_status.short_description = u'发货状态'
+
+
+    def colored(self):
+        if self.receive_status == 0:
+            color_code = 'red'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '尚未收货',
+            )
+        else:
+            color_code = 'green'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '已收货',
+            )
+    colored.short_description = u'收货状态'
+    def comment(self):
+        if self.receive_status == 0:
+            color_code = 'red'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '尚未评价',
+            )
+        else:
+            color_code = 'green'
+            return format_html(
+                '<span style="color:{};">{}</span>', color_code, '已评价',
+            )
+    comment.short_description = u'评价状态'
+
 
 
 class order_info(models.Model):

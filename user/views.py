@@ -215,7 +215,7 @@ def del_car(request):
 
 # 清空购物车
 def clear_car(request):
-
+    data={}
     # 判断是否登录
     user_id = request.session.get('U_userid', 0)
     if user_id == 0:
@@ -341,7 +341,7 @@ def do_place_order(request):
         model.body = goods_name_all
         model.product_code = "FAST_INSTANT_TRADE_PAY"
         request = AlipayTradePagePayRequest(biz_model=model)
-        request.return_url = 'http://101.200.56.194/user/return_url/'
+        request.return_url = 'http://127.0.0.1:8000/user/return_url/'
         # 得到构造的请求，如果http_method是GET，则是一个带完成请求参数的url，如果http_method是POST，则是一段HTML表单片段
         response = client.page_execute(request, http_method="GET")
         # print("alipay.trade.page.pay response:" + response)
@@ -653,7 +653,7 @@ def send_msg(request):
     token=md.hexdigest()
     url+='&token='+token
 
-    num=send_mail('标题','邮件内容','王炸<18737307883@163.com>',[user_info.email],html_message='您已注册成功，请点击：<a href="%s">登录验证</a>进行验证！'%(url))
+    num=send_mail('标题','邮件内容','水果商城<18737307883@163.com>',[user_info.email],html_message='您已注册成功，请点击：<a href="%s">登录验证</a>进行验证！'%(url))
     return HttpResponse('发送成功!')
 
 # 激活账号
@@ -704,4 +704,4 @@ def return_url(request):
     # print(request.GET)
     order_code=request.GET.get('out_trade_no')
     bool=orders.objects.filter(order_code=order_code).update(pay_status=1,pay_time=datetime.datetime.now())
-    return message("支付成功！<a href='%s'>继续购物</a>" % (reverse('goods:index')))
+    return message("支付成功！<a href='%s'>继续购物</a>" % (reverse('/')))
